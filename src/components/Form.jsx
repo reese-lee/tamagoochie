@@ -1,11 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types'
 
-function Form () {
+function Form (props) {
   let _name = null;
   let _color = null;
 
   function handleNewFormSubmission(event) {
     event.preventDefault();
+    props.onNewTamagucci({name: _name.value, color: _color.value})
     _name.value = '';
     _color.value = '';
   }
@@ -25,6 +27,7 @@ function Form () {
           <option id='rainbow' value="rainbow">Rainbow</option>
           <option id='snakeskin' value="snakeskin">Snakeskin</option>
           <option id='brown' value="brown">Boring</option>
+          <option id='hiker' value="brown">Hiker... color</option>
         </select>
         <button type="submit">Make my Tamagucci, yo</button>
       </form>
@@ -32,5 +35,9 @@ function Form () {
 
   )
 }
+
+Form.propTypes = {
+  onNewTamagucci: PropTypes.func
+};
 
 export default Form;
