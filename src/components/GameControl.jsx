@@ -13,7 +13,11 @@ class GameControl extends React.Component {
       bling: 5,
       shine: 5,
     }
-    this.handleAddNewTamagucci = this.handleAddNewTamagucci.bind(this)
+    this.handleAddNewTamagucci = this.handleAddNewTamagucci.bind(this);
+    this.allowanceLevel = this.allowanceLevel.bind(this);
+    this.shineLevel = this.shineLevel.bind(this);
+    this.ageLevel = this.ageLevel.bind(this);
+    this.handleAllowanceClick = this.handleAllowanceClick.bind(this);
   }
 
   handleAddNewTamagucci(tamagucci) {
@@ -25,6 +29,53 @@ class GameControl extends React.Component {
     })
   }
 
+  componentDidMount() {
+    this.allowanceLevel();
+    this.shineLevel();
+    this.ageLevel();
+  }
+
+  allowanceLevel() {
+    setInterval(() => {
+      this.setState(prevState => {
+        return {
+          allowance: prevState.allowance -20
+        }
+      })
+    }, 5000);
+    console.log(this.state.allowance);
+  }
+
+  shineLevel() {
+    setInterval(() => {
+      this.setState(prevState => {
+        return {
+          shine: prevState.shine -1
+        }
+      })
+    }, 7000);
+    console.log(this.state.shine);
+  }
+
+  ageLevel() {
+    setInterval(() => {
+      this.setState(prevState => {
+        return {
+          age: prevState.age +1
+        }
+      })
+    }, 60000);
+    console.log(this.state.age);
+  }
+
+  handleAllowanceClick() {
+    this.setState(prevState => {
+      return {
+        allowance: prevState.allowance +50
+      }
+    });
+  }
+
   render() {
 
     return(
@@ -34,7 +85,7 @@ class GameControl extends React.Component {
           {this.state.name === null && <Form onNewTamagucci={this.handleAddNewTamagucci}/>}
         </div>
         <div>
-          {this.state.name && <PlayScreen facts={this.state}/>}
+          {this.state.name && <PlayScreen facts={this.state} onAllowanceClick={this.handleAllowanceClick}/>}
         </div>
       </div>
     )

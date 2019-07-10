@@ -9,8 +9,6 @@ import hiker from './../assets/images/hiker.jpg';
 
 export default function Image(props) {
   let color = '';
-  console.log(props.color);
-  console.log(color);
   color = props.color
   return (
     <div>

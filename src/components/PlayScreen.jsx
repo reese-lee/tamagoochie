@@ -8,7 +8,7 @@ export default function PlayScreen(props) {
     <div>
       <h1>{props.facts.name}</h1>
       <Image color={props.facts.color}/>
-      <Interaction />
+      <Interaction onAllowanceClick={props.onAllowanceClick}/>
       <Stats facts={props.facts}/>
     </div>
   )
