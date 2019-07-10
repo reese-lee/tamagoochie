@@ -18,6 +18,7 @@ class GameControl extends React.Component {
     this.shineLevel = this.shineLevel.bind(this);
     this.ageLevel = this.ageLevel.bind(this);
     this.handleAllowanceClick = this.handleAllowanceClick.bind(this);
+    this.handleShineClick = this.handleShineClick.bind(this);
   }
 
   handleAddNewTamagucci(tamagucci) {
@@ -76,6 +77,14 @@ class GameControl extends React.Component {
     });
   }
 
+  handleShineClick() {
+    this.setState(prevState => {
+      return {
+        shine: prevState.shine +1
+      }
+    });
+  }
+
   render() {
 
     return(
@@ -85,7 +94,7 @@ class GameControl extends React.Component {
           {this.state.name === null && <Form onNewTamagucci={this.handleAddNewTamagucci}/>}
         </div>
         <div>
-          {this.state.name && <PlayScreen facts={this.state} onAllowanceClick={this.handleAllowanceClick}/>}
+          {this.state.name && <PlayScreen facts={this.state} onAllowanceClick={this.handleAllowanceClick} onShineClick={this.handleShineClick}/>}
         </div>
       </div>
     )
